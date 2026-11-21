@@ -2,7 +2,6 @@
 -- Run once in Supabase → SQL Editor. Safe to re-run.
 -- ALSO: Authentication → Sign In / Providers → enable "Allow anonymous sign-ins".
 
-create extension if not exists pgcrypto;
 
 -- ───────────────────────── tables ─────────────────────────
 create table if not exists public.hz_families (
@@ -110,10 +109,11 @@ create table if not exists public.hz_orders (
 );
 
 -- ───────────────────────── helpers ─────────────────────────
+-- Random code from a v4 UUID (cryptographically random bytes; no pgcrypto needed). len <= 6.
 create or replace function public.hz_code(len int default 6) returns text
-language sql volatile as $$
-  select string_agg(substr('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 1 + (get_byte(gen_random_bytes(1),0) % 32), 1), '')
-  from generate_series(1, len);
+language sql volatile set search_path = public as $$
+  select string_agg(substr('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 1 + (get_byte(b, g) % 32), 1), '' order by g)
+  from (select uuid_send(gen_random_uuid()) as b) s, generate_series(0, least(len, 6) - 1) g;
 $$;
 
 create or replace function public.hz_my_family() returns uuid

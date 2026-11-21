@@ -12,7 +12,7 @@ Built with Expo (React Native) + Supabase. Android and iOS from one codebase.
 
 ## Setup
 
-1. **Database**: In Supabase SQL Editor, run `supabase/healzo_setup.sql` (safe to re-run; only creates `hz_*` tables).
+1. **Database**: In the dedicated Healzo Supabase project (keep it separate from any other app data), run `supabase/healzo_setup.sql` (safe to re-run; only creates `hz_*` tables).
 2. **Auth**: Supabase → Authentication → Sign In / Providers → turn on **Allow anonymous sign-ins**.
 3. **Shop**: edit products in Table Editor → `hz_products`. Orders arrive in `hz_orders` (status: placed → confirmed → shipped → delivered).
 

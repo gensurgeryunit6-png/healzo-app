@@ -4,8 +4,8 @@ import { createClient } from '@supabase/supabase-js';
 import { Platform } from 'react-native';
 
 // Publishable (public) key only. Never put a service-role / secret key in the app.
-export const SUPABASE_URL = 'https://pnncnljakqrqzocahxhs.supabase.co';
-export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_cga5rEYY_gFG3KZ2Kpvb9g_ZoHKiYJd';
+export const SUPABASE_URL = 'https://fxqgrzpyzenbtfgydjnn.supabase.co';
+export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_86zW5k_bM8u74IyQSzjuTg_-ZxcvMM5';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
